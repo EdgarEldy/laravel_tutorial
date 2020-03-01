@@ -12,5 +12,35 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home/index');
+});
+
+Route::get('orders', function()
+{
+
+});
+
+Route::get('customers', function()
+{
+
+});
+
+Route::get('products', function()
+{
+
+});
+
+Route::get('categories', function()
+{
+
+});
+
+Route::get('profiles', function()
+{
+
+});
+
+Route::get('users', function()
+{
+
 });
