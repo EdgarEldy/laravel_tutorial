@@ -1,0 +1,47 @@
+@extends('templates.default')
+@section('content')
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Products</div>
+            <div class="panel-body">
+                <a href="<?= URL_ROOT;?>/products/add"
+                   class="btn btn-primary">New</a>
+                <table data-toggle="table" data-url=""  data-show-refresh="true" data-show-toggle="true"
+                       data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
+                       data-sort-name="name" data-sort-order="desc">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category name</th>
+                        <th>Product name</th>
+                        <th>Unit price</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($data['products'] as $product) :?>
+                    <tr>
+                        <td><?= $product->product_id; ?> </td>
+                        <td><?= $product->fk_cat_id; ?></td>
+                        <td><?= $product->product_name; ?></td>
+                        <td><?= $product->unit_price; ?></td>
+                        <td>
+                            <div class="card-footer">
+                                <a href="<?= URL_ROOT;?>/products/edit/<?= $product->product_id; ?> "
+                                   class="btn btn-primary">Edit</a>
+                                <form action="<?= URL_ROOT;?>/products/delete/<?= $product->product_id; ?>" method="post">
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this product ?')" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+@endsection()

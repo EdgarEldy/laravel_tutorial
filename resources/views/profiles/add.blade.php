@@ -1,0 +1,24 @@
+@extends('templates.default')
+@section('content')
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Add a profile</div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <form role="form" action="<?= URL_ROOT; ?>/profiles/add" method="post">
+                        <div class="form-group">
+                            <label>Profile name :</label>
+                            <input type="text" name="profile_name" class="form-control <?= (!empty($data['profile_name_err'])) ? 'is-invalid' : ''; ?>"
+                                   placeholder="" value="<?= $data['profile_name']; ?>">
+                            <span class="invalid-feedback"><?= $data['profile_name_err'] ?></span>
+                        </div>
+                        <button type="submit" id="submit" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-default">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.col-->
+
+
+@endsection()
