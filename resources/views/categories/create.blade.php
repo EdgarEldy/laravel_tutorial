@@ -6,12 +6,13 @@
             <div class="panel-heading">Add a product category</div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <form role="form" action="<?= URL_ROOT; ?>/categories/add" method="post">
+                    <form role="form" action="{{url('categories')}}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label>Category name :</label>
-                            <input type="text" name="cat_name" class="form-control <?= (!empty($data['cat_name_err'])) ? 'is-invalid' : ''; ?>"
-                                   placeholder="" value="<?= $data['cat_name']; ?>">
-                            <span class="invalid-feedback"><?= $data['cat_name_err'] ?></span>
+                            <input type="text" name="cat_name" class="form-control"
+                                   placeholder="" value="">
+                            <span class="invalid-feedback"></span>
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
