@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('unit_price');
             $table->timestamps();
             $table->foreign('fk_cat_id')
-                ->references('cat_id')
+                ->references('id')
                 ->on('categories')
                 ->onDelete('cascade');
         });
