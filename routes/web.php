@@ -19,9 +19,6 @@
 //Home
 Route::get('/','HomeController@index');
 
-//Orders
-Route::get('orders','OrdersController@index');
-Route::get('orders/create','OrdersController@create');
 
 //Customers
 
@@ -38,6 +35,6 @@ Route::post('categories/destroy/{category}','CategoriesController@destroy');
 
 //Users
 
-//Auth::routes();
+Auth::routes();
 
-
+Route::get('home', 'HomeController@index');
