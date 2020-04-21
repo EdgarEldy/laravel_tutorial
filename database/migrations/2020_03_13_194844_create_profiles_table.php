@@ -14,7 +14,7 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->bigIncrements('profile_id');
+            $table->bigIncrements('id');
             $table->string('profile_name');
             $table->timestamps();
         });
