@@ -31,8 +31,17 @@
 			</li>
 			<li><a href="{{url('users')}}"><svg class="glyph stroked male-user">
 				<use xlink:href="#stroked-male-user"></use></svg> Users</a></li>
-			<li><a href="{{url('users/login')}}">
-			<svg class="glyph stroked male-user"><use xlink:href="#stroked-cancel"></use></svg> Logout</a>
+			<li>
+				<a class="dropdown-item" href="{{ route('logout') }}"
+				   onclick="event.preventDefault();
+                   document.getElementById('logout-form').submit();">
+					<svg class="glyph stroked male-user"><use xlink:href="#stroked-cancel"></use></svg>
+					{{ __('Logout') }}
+				</a>
+
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+					@csrf
+				</form>
 			</li>
 		</ul>
 
