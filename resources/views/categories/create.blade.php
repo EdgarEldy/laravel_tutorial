@@ -10,9 +10,11 @@
                         @csrf
                         <div class="form-group">
                             <label>Category name :</label>
-                            <input type="text" name="cat_name" class="form-control"
+                            <input type="text" name="cat_name" class="form-control" class="@error('cat_name') is-danger @enderror"
                                    placeholder="" value="">
-                            <span class="invalid-feedback"></span>
+                            @error('cat_name')
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
