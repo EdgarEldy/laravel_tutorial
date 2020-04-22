@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     {
         //
         $categories = Category::all();
-        return view('categories.index', [
+        return view('categories/index', [
                 'categories' => $categories
             ]);
     }
@@ -29,7 +29,7 @@ class CategoriesController extends Controller
     public function create()
     {
         //
-        return view('categories.create');
+        return view('categories/create');
     }
 
     /**
@@ -40,9 +40,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validation
+        $request->validate([
+           'cat_name' => 'required'
+        ]);
+
+        //Creating Category object
         $category = new Category();
+
+        //Process form
         $category->cat_name = $request->cat_name;
+
+        //Save data
         $category->save();
         return redirect('categories');
 
@@ -69,7 +78,7 @@ class CategoriesController extends Controller
     {
         //
         $category = Category::find($id);
-        return view('categories.edit', ['category' => $category]);
+        return view('categories/edit', ['category' => $category]);
     }
 
     /**
@@ -79,11 +88,14 @@ class CategoriesController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request,Category $category)
     {
-        //
-        $category = Category::find($id);
-        $category->cat_name = \request('cat_name');
+        //Validation
+        $request->validate([
+           'cat_name' => 'required'
+        ]);
+
+        $category->cat_name = $request->cat_name;
         $category->save();
         return redirect('categories');
     }
