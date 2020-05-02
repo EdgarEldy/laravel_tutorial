@@ -40,7 +40,13 @@ Route::get('customers/edit/{customer}','CustomersController@edit');
 Route::put('customers/{customer}','CustomersController@update');
 Route::post('customers/destroy/{customer}','CustomersController@destroy');
 
-//Profiles
+//Products
+Route::get('products','ProductsController@index');
+Route::get('products/create','ProductsController@create');
+Route::post('products','ProductsController@store');
+Route::get('products/edit/{product}','ProductsController@edit');
+Route::put('products/{product}','ProductsController@update');
+Route::post('products/destroy/{product}','ProductsController@destroy');
 
 //Users
 
