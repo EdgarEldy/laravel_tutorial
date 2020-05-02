@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+=======
+use App\Product;
+use Illuminate\Http\Request;
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
 
 class ProductsController extends Controller
 {
@@ -17,12 +22,15 @@ class ProductsController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
         $products = DB::table('categories')
             ->join('products', 'products.category_id', '=', 'categories.id')
             ->get();
         return view('products/index',[
             'products' => $products
         ]);
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 
     /**
@@ -33,10 +41,13 @@ class ProductsController extends Controller
     public function create()
     {
         //
+<<<<<<< HEAD
         $categories = Category::all();
         return view('products/create',[
            'categories' => $categories
         ]);
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 
     /**
@@ -48,6 +59,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         //
+<<<<<<< HEAD
         $request->validate([
             'category_id' => 'required',
             'product_name' => 'required',
@@ -62,6 +74,8 @@ class ProductsController extends Controller
 
         return redirect('products');
 
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 
     /**
@@ -84,12 +98,15 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         //
+<<<<<<< HEAD
         $categories = Category::all();
         $product = Product::find($product->id);
         return view('products/edit',[
             'product' => $product,
             'categories' => $categories
         ]);
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 
     /**
@@ -102,6 +119,7 @@ class ProductsController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+<<<<<<< HEAD
         $request->validate([
             'category_id' => 'required',
             'product_name' => 'required',
@@ -114,6 +132,8 @@ class ProductsController extends Controller
         $product->save();
 
         return redirect('products');
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 
     /**
@@ -125,9 +145,12 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         //
+<<<<<<< HEAD
         $product = Product::find($product->id);
         $product->delete();
 
         return redirect('products');
+=======
+>>>>>>> 37ebb92bd58ac1f28d532e1b93dc6cdd9e2f71ea
     }
 }
