@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -15,6 +17,12 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        $products = DB::table('categories')
+            ->join('products', 'products.category_id', '=', 'categories.id')
+            ->get();
+        return view('products/index',[
+            'products' => $products
+        ]);
     }
 
     /**
@@ -25,6 +33,10 @@ class ProductsController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
+        return view('products/create',[
+           'categories' => $categories
+        ]);
     }
 
     /**
@@ -36,6 +48,20 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'unit_price' => 'required'
+        ]);
+
+        $product = new Product();
+        $product->category_id = $request->category_id;
+        $product->product_name = $request->product_name;
+        $product->unit_price = $request->unit_price;
+        $product->save();
+
+        return redirect('products');
+
     }
 
     /**
@@ -58,6 +84,12 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         //
+        $categories = Category::all();
+        $product = Product::find($product->id);
+        return view('products/edit',[
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -70,6 +102,18 @@ class ProductsController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $request->validate([
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'unit_price' => 'required'
+        ]);
+
+        $product->category_id = $request->category_id;
+        $product->product_name = $request->product_name;
+        $product->unit_price = $request->unit_price;
+        $product->save();
+
+        return redirect('products');
     }
 
     /**
@@ -81,5 +125,9 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         //
+        $product = Product::find($product->id);
+        $product->delete();
+
+        return redirect('products');
     }
 }
