@@ -4,7 +4,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Products</div>
             <div class="panel-body">
-                <a href="<?= URL_ROOT;?>/products/add"
+                <a href="{{url('products/create')}}"
                    class="btn btn-primary">New</a>
                 <table data-toggle="table" data-url=""  data-show-refresh="true" data-show-toggle="true"
                        data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
@@ -12,31 +12,32 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category name</th>
+                        <th>Category</th>
                         <th>Product name</th>
                         <th>Unit price</th>
                         <th>Options</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data['products'] as $product) :?>
+                    @foreach($products as $product)
                     <tr>
-                        <td><?= $product->product_id; ?> </td>
-                        <td><?= $product->fk_cat_id; ?></td>
-                        <td><?= $product->product_name; ?></td>
-                        <td><?= $product->unit_price; ?></td>
+                        <td>{{$product->id}}</td>
+                        <td>{{$product->cat_name}}</td>
+                        <td>{{$product->product_name}}</td>
+                        <td>{{$product->unit_price}}</td>
                         <td>
                             <div class="card-footer">
-                                <a href="<?= URL_ROOT;?>/products/edit/<?= $product->product_id; ?> "
+                                <a href="products/edit/{{$product->id}}"
                                    class="btn btn-primary">Edit</a>
-                                <form action="<?= URL_ROOT;?>/products/delete/<?= $product->product_id; ?>" method="post">
-                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this product ?')" class="btn btn-danger btn-sm">Delete</button>
+                                <form action="products/destroy/{{$product->id}}" method="post">
+                                    @csrf
+                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this customer ?')" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
 
                             </div>
                         </td>
                     </tr>
-                    <?php endforeach;?>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
