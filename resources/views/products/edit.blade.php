@@ -1,33 +1,41 @@
 @extends('templates.default')
 @section('content')
+
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Update a product</div>
+            <div class="panel-heading">Edit a product</div>
             <div class="panel-body">
                 <div class="col-md-6">
-                    <form role="form" action="<?= URL_ROOT; ?>/products/edit/<?= $data['id']; ?>" method="post" enctype="multipart/form-data">
-
+                    <form role="form" action="/products/{{$product->id}}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
-                            <label>Category :</label>
-                            <select name="fk_cat_id" class="form-control <?= (!empty($data['fk_cat_id_err'])) ? 'is-invalid' : ''; ?>">
+                            <label for="">Select a category :</label>
+                            <select name="category_id" id="" class="form-control" class="@error('category_id') is-invalid @enderror">
                                 <option value=""></option>
-                                <?php foreach ($data['categories'] as $category) : ?>
-                                <option value="<?php echo $category->cat_id;?>"><?php echo $category->cat_name;?></option>
-                                <?php endforeach;?>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->cat_name}}</option>
+                                @endforeach
                             </select>
-                            <span class="invalid-feedback"><?= $data['fk_cat_id_err'] ?></span>
+                            @error('category_id')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Product name :</label>
-                            <input type="text" name="product_name" class="form-control <?= (!empty($data['product_name_err'])) ? 'is_invalid' : '';  ?>"
-                                   placeholder="" value="<?= $data['product_name']; ?>">
-                            <span class="invalid-feedback"><?= $data['product_name_err'] ?></span>
+                            <input type="text" name="product_name" class="form-control" class="@error('product_name') is-invalid @enderror"
+                                   placeholder="" value="{{$product->product_name}}">
+                            @error('product_name')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Unit price :</label>
-                            <input type="text" name="unit_price" class="form-control <?= (!empty($data['unit_price_err'])) ? 'is_invalid' : '';  ?>"
-                                   placeholder="" value="<?= $data['unit_price']; ?>">
-                            <span class="invalid-feedback"><?= $data['unit_price_err'] ?></span>
+                            <input type="text" name="unit_price" class="form-control" class="@error('unit_price') is-invalid @enderror"
+                                   placeholder="" value="{{$product->unit_price}}">
+                            @error('unit_price')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
                         </div>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
@@ -36,6 +44,6 @@
             </div>
         </div>
     </div><!-- /.col-->
-    <script>
+
 
 @endsection()
