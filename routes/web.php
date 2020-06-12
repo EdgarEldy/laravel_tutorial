@@ -48,6 +48,14 @@ Route::get('products/edit/{product}','ProductsController@edit');
 Route::put('products/{product}','ProductsController@update');
 Route::post('products/destroy/{product}','ProductsController@destroy');
 
+//Orders
+Route::get('orders','OrdersController@index');
+Route::get('orders/create','OrdersController@create');
+Route::post('orders','OrdersController@store');
+Route::get('orders/edit/{order}','OrdersController@edit');
+Route::put('orders/{order}','OrdersController@update');
+Route::post('orders/destroy/{order}','OrdersController@destroy');
+
 //Users
 
 Auth::routes();
