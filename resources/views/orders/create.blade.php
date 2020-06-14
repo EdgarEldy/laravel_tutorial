@@ -9,33 +9,25 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Select a customer :</label>
-                            <select name="category_id" id="" class="form-control" class="@error('category_id') is-invalid @enderror">
+                            <select name="customer_id" id="customer_id" class="form-control" class="@error('customer_id') is-invalid @enderror">
                                 <option value=""></option>
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->cat_name}}</option>
+                                @foreach($customers as $customer)
+                                    <option value="{{$customer->id}}">{{$customer->first_name}} {{$customer->last_name}}</option>
                                 @endforeach
                             </select>
-                            @error('category_id')
+                            @error('customer_id')
                             <button class="btn-danger">{{$message}}</button>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Select a product :</label>
-                            <select name="category_id" id="" class="form-control" class="@error('category_id') is-invalid @enderror">
+                            <select name="product_id" id="product_id" class="form-control" class="@error('product_id') is-invalid @enderror">
                                 <option value=""></option>
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->cat_name}}</option>
+                                @foreach($products as $product)
+                                    <option value="{{$product->id}}">{{$product->product_name}}</option>
                                 @endforeach
                             </select>
-                            @error('category_id')
-                            <button class="btn-danger">{{$message}}</button>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Product name :</label>
-                            <input type="text" name="product_name" class="form-control" class="@error('product_name') is-invalid @enderror"
-                                   placeholder="" value="">
-                            @error('product_name')
+                            @error('product_id')
                             <button class="btn-danger">{{$message}}</button>
                             @enderror
                         </div>
@@ -44,6 +36,22 @@
                             <input type="text" name="unit_price" class="form-control" class="@error('unit_price') is-invalid @enderror"
                                    placeholder="" value="">
                             @error('unit_price')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Qty :</label>
+                            <input type="text" name="qty" class="form-control" class="@error('qty') is-invalid @enderror"
+                                   placeholder="" value="">
+                            @error('qty')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Total :</label>
+                            <input type="text" name="total" class="form-control" class="@error('total') is-invalid @enderror"
+                                   placeholder="" value="">
+                            @error('total')
                             <button class="btn-danger">{{$message}}</button>
                             @enderror
                         </div>
