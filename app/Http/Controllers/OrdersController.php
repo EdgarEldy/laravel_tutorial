@@ -53,7 +53,23 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Form validation
+        $request->validate([
+            'customer_id' => 'required',
+            'product_id' => 'required',
+            'unit_price' => 'required',
+            'qty' => 'required',
+            'total' => 'required',
+        ]);
+
+        $order = new Order();
+        $order->customer_id = $request->customer_id;
+        $order->product_id = $request->product_id;
+        $order->qty = $request->qty;
+        $order->total = $request->total;
+        $order->save();
+
+        return redirect('orders');
     }
 
     /**
