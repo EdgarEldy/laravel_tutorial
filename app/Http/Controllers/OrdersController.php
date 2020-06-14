@@ -35,6 +35,14 @@ class OrdersController extends Controller
     public function create()
     {
         //
+        $customers = Customer::all();
+        $products = DB::table('categories')
+            ->join('products','products.category_id','=','categories.id')
+            ->get();
+        return view('orders/create',[
+            'customers' => $customers,
+            'products' => $products
+        ]);
     }
 
     /**
@@ -68,6 +76,7 @@ class OrdersController extends Controller
     public function edit(Order $order)
     {
         //
+        
     }
 
     /**
