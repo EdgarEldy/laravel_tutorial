@@ -20,7 +20,7 @@ class ProductsController extends Controller
         $products = DB::table('categories')
             ->join('products', 'products.category_id', '=', 'categories.id')
             ->get();
-        return view('products/index',[
+        return view('products/index', [
             'products' => $products
         ]);
     }
@@ -34,8 +34,8 @@ class ProductsController extends Controller
     {
         //
         $categories = Category::all();
-        return view('products/create',[
-           'categories' => $categories
+        return view('products/create', [
+            'categories' => $categories
         ]);
     }
 
@@ -82,10 +82,15 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        //Getting the id and the cat_name using the product id
+        $category = DB::table('categories')
+            ->join('products', 'products.category_id', '=', 'categories.id')
+            ->where('products.id', '=', $product->id)
+            ->first();
         $categories = Category::all();
         $product = Product::find($product->id);
-        return view('products/edit',[
+        return view('products/edit', [
+            'category' => $category,
             'product' => $product,
             'categories' => $categories
         ]);
