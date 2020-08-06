@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Customer;
 use App\Order;
 use App\Product;
@@ -19,11 +20,11 @@ class OrdersController extends Controller
     {
         //
         $orders = DB::table('customers')
-            ->join('orders', 'orders.customer_id','=','customers.id')
-            ->join('products','orders.product_id','=','products.id')
+            ->join('orders', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
             ->get();
-        return view('orders/index',[
-           'orders' => $orders
+        return view('orders/index', [
+            'orders' => $orders
         ]);
     }
 
@@ -35,11 +36,13 @@ class OrdersController extends Controller
     public function create()
     {
         //
+        $categories = Category::all();
         $customers = Customer::all();
         $products = DB::table('categories')
-            ->join('products','products.category_id','=','categories.id')
+            ->join('products', 'products.category_id', '=', 'categories.id')
             ->get();
-        return view('orders/create',[
+        return view('orders/create', [
+            'categories' => $categories,
             'customers' => $customers,
             'products' => $products
         ]);
@@ -48,7 +51,7 @@ class OrdersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -75,7 +78,7 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -86,20 +89,20 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
     {
         //
-        
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
@@ -110,7 +113,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)
