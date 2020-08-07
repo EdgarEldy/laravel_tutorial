@@ -27,3 +27,13 @@ $(function () {
       });
    });
 });
+
+$(function () {
+   $('#qty').on('change', function () {
+      var total = '';
+      var price = $('#price').val();
+      var qty = $(this).val();
+      total = price * qty;
+      $('#total').val(total);
+   });
+});
