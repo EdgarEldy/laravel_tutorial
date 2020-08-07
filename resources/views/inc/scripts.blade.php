@@ -9,6 +9,7 @@
 	<script src="{{asset('js/global.js')}}"></script>
 	<script src="{{asset('js/fontawesome.min.js')}}"></script>
 	<script src="{{asset('js/events.js')}}"></script>
+	<script src="{{asset('js/main.js')}}"></script>
 	<script>
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){
