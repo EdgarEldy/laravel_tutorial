@@ -57,6 +57,7 @@ Route::put('orders/{order}','OrdersController@update');
 Route::post('orders/destroy/{order}','OrdersController@destroy');
 
 Route::get('orders/getProducts', 'OrdersController@getProducts');
+Route::get('orders/getUnitPrice', 'OrdersController@getUnitPrice');
 
 //Users
 
