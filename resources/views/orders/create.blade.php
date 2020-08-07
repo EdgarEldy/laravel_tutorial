@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label>Qty :</label>
-                            <input type="text" name="qty" class="form-control"
+                            <input type="text" name="qty" id="qty" class="form-control"
                                    class="@error('qty') is-invalid @enderror"
                                    placeholder="" value="">
                             @error('qty')
@@ -52,14 +52,13 @@
                         </div>
                         <div class="form-group">
                             <label>Total :</label>
-                            <input type="text" name="total" class="form-control"
+                            <input type="text" name="total" id="total" class="form-control"
                                    class="@error('total') is-invalid @enderror"
                                    placeholder="" value="">
                             @error('total')
                             <button class="btn-danger">{{$message}}</button>
                             @enderror
                         </div>
-                        <button type="button" id="button" class="btn btn-primary">Click me</button>
                         <button type="submit" id="submit" class="btn btn-primary">Save</button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </form>
