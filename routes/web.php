@@ -56,6 +56,8 @@ Route::get('orders/edit/{order}','OrdersController@edit');
 Route::put('orders/{order}','OrdersController@update');
 Route::post('orders/destroy/{order}','OrdersController@destroy');
 
+Route::get('orders/getProducts', 'OrdersController@getProducts');
+
 //Users
 
 Auth::routes();
