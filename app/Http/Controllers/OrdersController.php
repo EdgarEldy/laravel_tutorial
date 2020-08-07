@@ -49,6 +49,21 @@ class OrdersController extends Controller
         ]);
     }
 
+    public function getUnitPrice(Request $request)
+    {
+        if ($request->has('product_id')){
+            $product_id = $request->get('product_id');
+            $product = DB::table('categories')
+                ->join('products', 'products.category_id', '=', 'categories.id')
+                ->where('products.id', '=', $product_id)
+                ->first();
+        }
+
+        return view('orders.getUnitPrice',[
+            'product' => $product
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
