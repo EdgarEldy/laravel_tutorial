@@ -29,6 +29,27 @@ class OrdersController extends Controller
     }
 
     /**
+     * @param Request $request
+     */
+    public function getProducts(Request $request)
+    {
+
+        if ($request->has('cat_id')) {
+            $cat_id = $request->get('cat_id');
+            $products = DB::table('categories')
+                ->join('products', 'products.category_id', '=', 'categories.id')
+                ->where('categories.id', '=', $cat_id)
+                ->get();
+
+
+        }
+
+        return view('orders/getProducts', [
+            'products' => $products
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
