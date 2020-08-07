@@ -9,6 +9,9 @@
 	<script src="{{asset('js/global.js')}}"></script>
 	<script src="{{asset('js/fontawesome.min.js')}}"></script>
 	<script src="{{asset('js/events.js')}}"></script>
+	<script>
+		var route = "{{URL::to('/')}}";
+	</script>
 	<script src="{{asset('js/main.js')}}"></script>
 	<script>
 		!function ($) {
