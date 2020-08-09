@@ -23,15 +23,14 @@ $(function () {
    $('#product_id').on('change', function () {
       var product_id = $(this).val();
       $.get(route + '/orders/getUnitPrice', { product_id: product_id }, function (data) {
-         $('#unit_price').html(data);
+         $('#unit_price').val(data);
       });
    });
 });
 
 $(function () {
    $('#qty').on('change', function () {
-      var total = '';
-      var price = $('#price').val();
+      var price = $('#unit_price').val();
       var qty = $(this).val();
       total = price * qty;
       $('#total').val(total);
