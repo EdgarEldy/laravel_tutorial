@@ -39,7 +39,14 @@
                             <button class="btn-danger">{{$message}}</button>
                             @enderror
                         </div>
-                        <div class="form-group" id="unit_price">
+                        <div class="form-group">
+                            <label for="unit_price">Unit price :</label>
+                            <input type="text" name="unit_price" id="unit_price" class="form-control"
+                                   class="@error('unit_price') is-invalid @enderror"
+                                   placeholder="" value="">
+                            @error('unit_price')
+                            <button class="btn-danger">{{$message}}</button>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Qty :</label>
