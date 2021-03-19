@@ -64,3 +64,7 @@ Route::get('orders/getUnitPrice', 'OrdersController@getUnitPrice');
 Auth::routes();
 
 Route::get('home', 'HomeController@index');
+
+Route::resources([
+   'users' => 'UserController'
+]);
