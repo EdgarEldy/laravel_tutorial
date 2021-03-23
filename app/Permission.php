@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
+    public $timestamps = false;
+
     //Add belongsToMany relationship to Role Model
     public function roles()
     {
