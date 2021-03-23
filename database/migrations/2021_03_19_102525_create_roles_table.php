@@ -15,7 +15,12 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 100);
+            $table->uuid('deletion_token')->default('NA');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['name', 'deletion_token']);
         });
     }
 
