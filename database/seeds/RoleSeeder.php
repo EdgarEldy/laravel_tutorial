@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -11,6 +12,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // Populate fake roles
+        Role::factory()->count(5)->create();
     }
 }
