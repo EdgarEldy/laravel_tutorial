@@ -1,5 +1,6 @@
 <?php
 
+use App\Permission;
 use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -28,5 +29,17 @@ class PermissionSeeder extends Seeder
         $adminRole = Role::updateOrCreate([
             'name' => 'admin'
         ]);
+
+        //Create default permissions
+        $permissions = [
+            'View',
+            'Create',
+            'Update',
+            'Delete'
+        ];
+
+        foreach ($permissions as $perm_name) {
+            Permission::updateOrCreate(['name' => $perm_name]);
+        }
     }
 }
