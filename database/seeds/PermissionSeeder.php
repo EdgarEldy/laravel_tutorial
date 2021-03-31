@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,11 @@ class PermissionSeeder extends Seeder
             'email' => 'admin@admin.com',
             'username' => 'admin',
             'password' => Hash::make(12345678),
+        ]);
+
+        //Create admin role
+        $adminRole = Role::updateOrCreate([
+            'name' => 'admin'
         ]);
     }
 }
