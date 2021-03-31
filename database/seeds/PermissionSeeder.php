@@ -41,5 +41,11 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $perm_name) {
             Permission::updateOrCreate(['name' => $perm_name]);
         }
+
+        //Getting all permissions and assign roles to user
+        $permissions = Permission::all();
+
+        $adminRole->permissions()->sync($permissions->pluck('id')->toArray());
+        $adminUser->roles()->sync($adminRole->pluck('id')->toArray());
     }
 }
