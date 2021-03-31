@@ -29,5 +29,12 @@ class UserSeeder extends Seeder
                 $roles->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
+
+        //Populate the pivot table 'permission_role'
+        Role::where('id', '!=', 1)->get()->each(function ($role) use ($permissions) {
+            $role->permissions()->sync(
+                $permissions->random(rand(1, 4))->pluck('id')->toArray()
+            );
+        });
     }
 }
