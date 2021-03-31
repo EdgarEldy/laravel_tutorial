@@ -15,6 +15,8 @@ class CreatePermissionRoleTable extends Migration
     {
         Schema::create('permission_role', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('permission_id')->constrained('permissions');
             $table->timestamps();
         });
     }
