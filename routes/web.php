@@ -17,6 +17,9 @@
 //});
 
 //Home
+
+use App\Http\Controllers\RoleController;
+
 Route::get('/','HomeController@index');
 
 
@@ -66,5 +69,6 @@ Auth::routes();
 Route::get('home', 'HomeController@index');
 
 Route::resources([
+   'roles' => 'RoleController',
    'users' => 'UserController'
 ]);
