@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        //Getting roles/create view with permissions
+        $permissions = Permission::all();
+        return view('roles/create', ['permissions' => $permissions]);
     }
 
     /**
