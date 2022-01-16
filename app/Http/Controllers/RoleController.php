@@ -39,7 +39,21 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'unique:roles,name,NULL,id,deleted_at,NULL'],
+            'permissions' => 'required',
+        ]);
+
+        $role = new Role();
+
+        $role->name = $request->name;
+        $role->save();
+
+        $role->permissions()->sync($request->permissions);
+
+        flash("User role has been saved successfully !");
+
+        return redirect('roles');
     }
 
     /**
