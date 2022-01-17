@@ -75,7 +75,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all();
+        $rolePermission = $role->permissions->pluck('name')->all();
+        return view('roles.edit', compact('role', 'permissions', 'rolePermission'));
     }
 
     /**
