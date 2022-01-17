@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoleController extends Controller
 {
@@ -89,7 +90,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('roles')->ignore($role->id)->whereNull('deleted_at')
+            ],
+            'permissions' => 'required',
+        ]);
+
+        $role->name = $request->name;
+        $role->updated_at = now();
+
+        $role->save();
+
+        $role->permissions()->sync($request->permissions);
+
+        flash("User role has been updated successfully! ");
+        return redirect('roles');
     }
 
     /**
