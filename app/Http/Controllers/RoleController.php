@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Permission;
 use App\Role;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -117,6 +118,12 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->deletion_token = (string) Str::uuid();
+        $role->save();
+
+        $role->delete();
+
+        flash("User role has been removed successfully! ");
+        return redirect('roles');
     }
 }
