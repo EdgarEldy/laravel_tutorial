@@ -40,7 +40,7 @@
                             </td>
                             <td>
                                 <div class="card-footer">
-                                    <a href="roles/edit/{{$role->id}}"
+                                    <a href="roles/{{$role->id}}/edit"
                                        class="btn btn-primary">Edit</a>
                                     <form action="roles/destroy/{{$role->id}}" method="POST">
                                         @csrf
