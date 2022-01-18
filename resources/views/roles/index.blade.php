@@ -40,10 +40,11 @@
                             </td>
                             <td>
                                 <div class="card-footer">
-                                    <a href="roles/edit/{{$role->id}}"
+                                    <a href="roles/{{$role->id}}/edit"
                                        class="btn btn-primary">Edit</a>
-                                    <form action="roles/destroy/{{$role->id}}" method="POST">
+                                    <form action="{{ route('roles.destroy', $role) }}" method="POST">
                                         @csrf
+                                        @method('DELETE')
                                         <button type="submit"
                                                 onclick="return confirm('Are you sure you want to delete this role ?')"
                                                 class="btn btn-danger btn-sm">Delete
