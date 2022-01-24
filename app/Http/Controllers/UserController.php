@@ -8,6 +8,20 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     * Setting up permissions
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:Create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:View', ['only' => ['Show']]);
+        $this->middleware('permission:Update', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:Delete', ['only' => ['destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
