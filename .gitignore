@@ -13,3 +13,15 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 composer.lock
+
+# yarn.lock
+yarn.lock
+
+# app.css
+public/css/app.css
+
+# app.js
+public/js/app.js
+
+# mix-manifest.json
+public/mix-manifest.json
