@@ -16,3 +16,6 @@ composer.lock
 
 # yarn.lock
 yarn.lock
+
+# app.css
+public/css/app.css
